@@ -1,4 +1,7 @@
 import React from "react";
+import Metronome from "./Metronome";
+import './Drum_Machine.css';
+
 import Kick1 from './808_kit/Kick.wav';
 import Snare1 from './808_kit/Clap.wav';
 import Clap1 from './808_kit/Snare.wav';
@@ -91,74 +94,133 @@ const popKit = [
     }
 ];
 
-const soundsName = {
+const kitName = {
     kit1: "808 Kit",
     kit2: "Pop Kit"
 };
 
-const soundsGroup = {
+const kitGroup = {
     kit1: kit808,
     kit2: popKit
 }
 
-const Triggers = ({ play, sample: { key, url, keyCode } }) => {
+const Triggers = ({ play, deactivateAudio, sample: { id, key, url, keyCode } }) => {
 
-    const handleKeydown = (event) => {
-        if(event.keyCode === keyCode){
-            play(key)
+    const pressKey = (event) => {
+        if(keyCode === event.keyCode){
+            const audio = document.getElementById(key);
+            play(key, id);
+            deactivateAudio(audio)
         }
     }
 
     React.useEffect(() => {
-        document.addEventListener("keydown", handleKeydown)
+        document.addEventListener("keydown", pressKey)
     }, [])
 
     return (
-        <button className="drum-pad" onClick={() => play(key)}> 
+        <button value="test" id={keyCode} className="drum-pad" onClick={() => play(key, id)}> 
             <audio className="clip" id={key} src={url} />
             {key}
         </button>
-    )
-}
- 
-const Keyboard = ({ play, kits }) => {
-    return kits.map((sample) => <Triggers play={play} sample={sample} />)
+    );
 }
 
-const ChangeKitController = ({ changeKit }) => (
-    <div className="kitController">
-        <button onClick={changeKit}>Change Drum Kit</button>
+const Keyboard = ({ play, kits, power, deactivateAudio }) => (
+    <div className="keyboard">
+    {power 
+      ? kits.map((sample) => <Triggers sample={sample} play={play} deactivateAudio={deactivateAudio} />)
+      : kits.map((sample) => <Triggers sample={{...sample, url: "#" }} play={play} deactivateAudio={deactivateAudio} />)        
+    }
+  </div>
+);
+
+const DrumController = ({ stop, name, power, volume, handleVolumeChange, changeKit }) => (
+    <div className="controller">
+      <button onClick={stop}>Turn Power {power ? 'OFF' : 'ON'}</button>
+      <h2>Volume: %{Math.round(volume * 100)}</h2>
+      <input
+        max="1"
+        min="0"
+        step='0.01'
+        type="range"
+        value={volume}
+        onChange={handleVolumeChange}
+        />
+      <h2 id="display" >{name}</h2>
+      <button onClick={changeKit}>Change Sounds Group</button>
     </div>
-)
-
+  );
+  
 const Drum_Machine = () => {
-    const [kitType, setKitType] = React.useState("808 Kit"); //Detta är vårt startkit
-    const [kits, setKit] = React.useState(soundsGroup[kitType])
+    const [power, setPower] = React.useState(true);
+    const [volume, setVolume] = React.useState(1);
+    const [soundType, setSoundType] = React.useState("kit1"); //Detta är vårt startkit
+    const [soundName, setSoundName] = React.useState("");
+    const [kits, setKit] = React.useState(kitGroup[soundType])  
 
-    const play = (key) => {
+    const deactivateAudio = (audio) => {
+        setTimeout(() => {
+          audio.parentElement.style.backgroundColor = "#ffffff"
+          audio.parentElement.style.color = "#000000"
+        }, 300)
+      }
+
+    const play = (key, sample) => {
+        setSoundName(sample)
         const audio = document.getElementById(key)
         audio.currentTime = 0;
         audio.play()
+        deactivateAudio(audio)
     }
+
+    const stop = () => {
+        setPower(!power)
+     }
 
     const changeKit = () => {
-        if(kitType === "808 Kit"){
-            setKitType("Pop Kit")
-            console.log("Changing to Pop-Kit")
-            setKit(soundsGroup.kit1)
+        setSoundName("")
+        if(soundType === "kit1"){
+            setSoundType("kit2")
+            console.log("Changing to Pop-Kit") 
+            setKit(kitGroup.kit2)
         } else {
-            setKitType("808 Kit")
+            setSoundType("kit1")
             console.log("Changing to 808-Kit")
-            setKit(soundsGroup.kit2)
+            setKit(kitGroup.kit1)
         }
     }
-//Problem dår "kits"-variabeln inte vill vara dynamisk på rad 157, just nu hårdkodar jag in kit808 eller PopKit för att byta ljud
-    return <div id="drum_machine"> 
-        <Keyboard play={play} kits={kit808} /> 
-        <ChangeKitController changeKit={changeKit} />
-    </div>
-}
+
+    const handleVolumeChange = event => {
+        setVolume(event.target.value)
+    }
+
+    const setKeyVolume = () => {
+        const audioes = kits.map(sample => document.getElementById(sample.key)); //kits är en dynamisk variabel som tidigare var hårdkodad
+        audioes.forEach(audio => {
+          if(audio) {
+            audio.volume = volume;
+          }
+        }) 
+      }
+
+    return (
+        <div className="drum_machine" id="drum_machine"> 
+            {setKeyVolume()}
+            <div className="wrapper">
+                <Keyboard play={play} kits={kits} power={power} deactivateAudio={deactivateAudio} 
+/> 
+                <DrumController 
+                stop={stop}
+                power={power}
+                volume={volume}
+                handleVolumeChange={handleVolumeChange} 
+                changeKit={changeKit} 
+                name={soundName || kitName[soundType]} />
+            </div>
+            <Metronome/>
+        </div>
+  )
+};
 
 export default Drum_Machine;
-
-//ReactDOM.render(<Drum_Machine />, document.getElementById("app"));
