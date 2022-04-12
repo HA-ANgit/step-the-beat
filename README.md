@@ -1,4 +1,5 @@
 # En tempo-baserad trummaskin
+![STEP THE BEAT](https://user-images.githubusercontent.com/73692517/162933370-0d895c3d-c025-4437-8d46-97595b0ea796.jpg)
 
 Bakgrund
 Musik och rytm har alltid varit en viktig del i människans kultur, och varit nära kopplat till fysisk aktivitet och dans. Vi har i tusentals år dansat till rytmer och trummorna i olika kulturer har haft en central roll i allt ifrån ceremoniella tillställningar som idrottsliga sammanhang. Att kunna tänka sig en rytm-baserad trummaskin som anpassas mot användarens gång/löp-tempo är något många kan dra nytta utav i vardagen när tiotusen steg per dag är ett vanligt förekommande mål. Detta är något som kan vara uppskattat i både fitness-världen samt under en härlig söndagspromenad. Går det att få en person att anpassa sitt tempo efter en enkel trumrytm, eller hur kan denna teknik användas för att sporra ett träningspass? En svårighet i löpning och gång kan vara att hålla ett konstant tempo, och med hjälp av rytmer visar forskning att människan klarar av mer. Kan detta i framtiden tillomed klassas som doping?
