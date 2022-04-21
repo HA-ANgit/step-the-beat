@@ -13,9 +13,10 @@ import Snare2 from './Pop_kit/Clap.wav';
 import Clap2 from './Pop_kit/Snare.wav';
 import HHC2 from './Pop_kit/HH_Closed.wav';
 import HHO2 from './Pop_kit/HH_Open.wav';
-import Perc2 from './Pop_kit/Perc.wav';
+import Perc2 from './Pop_kit/Perc.wav'; 
+//Integrera Node.js för att bygga DBC och placera dessa ljudfiler på cloud eller lokal DB
 
-
+//Skapa en dynamisk variabel som hämtar data för dessa kit
 const kit808 = [
     {
         keyCode: 81,
@@ -104,7 +105,7 @@ const kitGroup = {
     kit2: popKit
 }
 
-const Triggers = ({ play, deactivateAudio, sample: { id, key, url, keyCode } }) => {
+const Triggers = ({ play, deactivateAudio, sample: { id, key, url, keyCode } }) => { //Trigger hook som låter ljud provspelas med knapptryck
 
     const pressKey = (event) => {
         if(keyCode === event.keyCode){
@@ -114,7 +115,7 @@ const Triggers = ({ play, deactivateAudio, sample: { id, key, url, keyCode } }) 
         }
     }
 
-    React.useEffect(() => {
+    React.useEffect(() => { 
         document.addEventListener("keydown", pressKey)
     }, [])
 
