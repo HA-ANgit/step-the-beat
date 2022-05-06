@@ -1,6 +1,5 @@
 import React from "react";
-import Metronome from "./Metronome";
-import './Drum_Machine.css';
+import './drumMachine.css';
 
 import Kick1 from './808_kit/Kick.wav';
 import Snare1 from './808_kit/Clap.wav';
@@ -131,7 +130,7 @@ const Triggers = ({ play, deactivateAudio, sample: { id, key, url, keyCode } }) 
 const Keyboard = ({ play, kits, power, deactivateAudio }) => (
     <div className="keyboard">
     {power 
-      ? kits.map((sample) => <Triggers sample={sample} play={play} deactivateAudio={deactivateAudio} />)
+      ? kits.map((sample) => <Triggers key={sample.id} sample={sample} play={play} deactivateAudio={deactivateAudio} />)
       : kits.map((sample) => <Triggers sample={{...sample, url: "#" }} play={play} deactivateAudio={deactivateAudio} />)        
     }
   </div>
@@ -154,7 +153,7 @@ const DrumController = ({ stop, name, power, volume, handleVolumeChange, changeK
     </div>
   );
   
-const Drum_Machine = () => {
+const DrumMachine = () => {
     const [power, setPower] = React.useState(true);
     const [volume, setVolume] = React.useState(1);
     const [soundType, setSoundType] = React.useState("kit1"); //Detta är vårt startkit
@@ -224,4 +223,4 @@ const Drum_Machine = () => {
   )
 };
 
-export default Drum_Machine;
+export default DrumMachine;

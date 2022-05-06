@@ -9,13 +9,3 @@
     width: 100%;
     margin: 10px;
 }
-
-.metronome button {
-    background-color: rgb(92, 93, 181);
-    padding: 10px;
-    border: 1px solid slategray;
-    border-radius: 2 px;
-    width: 100%;
-    color: aliceblue;
-    font-size: 18px;
-}

@@ -3,8 +3,9 @@ import { Component } from 'react';
 import './App.css';
 
 //components
-import Drum_Machine from './Drum_Machine';
+import DrumMachine from './drumMachine';
 import Metronome from './Metronome';
+import Counter from './components/counter';
 
 //Detta är min root component!
 function App() {
@@ -15,8 +16,9 @@ function App() {
         <p>
           En tempo-baserad trummaskin
         </p>
-        <Drum_Machine/>
+        <DrumMachine/>
         <Metronome/>
+        <Counter/>
       </header>
     </div>
   );

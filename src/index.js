@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Metronome from './Metronome';
-import Drum_Machine from './Drum_Machine';
-
 
 ReactDOM.render(
   /** App blir min root-component */
