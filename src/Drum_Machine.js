@@ -14,7 +14,8 @@ import Clap2 from './Pop_kit/Snare.wav';
 import HHC2 from './Pop_kit/HH_Closed.wav';
 import HHO2 from './Pop_kit/HH_Open.wav';
 import Perc2 from './Pop_kit/Perc.wav'; 
-//Integrera Node.js för att bygga DBC och placera dessa ljudfiler på cloud eller lokal DB
+
+/** Min root-component */
 
 //Skapa en dynamisk variabel som hämtar data för dessa kit
 const kit808 = [
@@ -219,7 +220,6 @@ const Drum_Machine = () => {
                 changeKit={changeKit} 
                 name={soundName || kitName[soundType]} />
             </div>
-            <Metronome/>
         </div>
   )
 };
