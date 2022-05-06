@@ -1,6 +1,12 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { Component } from 'react';
 import './App.css';
 
+//components
+import Drum_Machine from './Drum_Machine';
+import Metronome from './Metronome';
+
+//Detta är min root component!
 function App() {
 
   let audio = new Audio('/Metronome.mp3')
@@ -13,7 +19,6 @@ function App() {
 
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <h1 className="app-title">I am Drum Machine [┐∵]┘</h1>
 
         < div id="Metronome" >
@@ -23,13 +28,8 @@ function App() {
         <p>
           En tempo-baserad trummaskin
         </p>
-        <a
-          className="app-link"
-          href="https://ha-an.se"
-          target="_blank"
-        >
-          Link to HA-AN
-        </a>
+        <Drum_Machine/>
+        <Metronome/>
       </header>
     </div>
   );

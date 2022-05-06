@@ -8,12 +8,11 @@ import Drum_Machine from './Drum_Machine';
 
 
 ReactDOM.render(
-  <Drum_Machine />, /*<Metronome />,*/ document.querySelector("#root")
-
-  /*<React.StrictMode>
+  /** App blir min root-component */
+  <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')*/
+  document.getElementById('root')
 ); 
 
 <div id="drum_machine"></div>
