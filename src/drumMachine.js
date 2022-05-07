@@ -104,8 +104,8 @@ const kitGroup = {
     kit1: kit808,
     kit2: popKit
 }
-
-const Triggers = ({ play, deactivateAudio, sample: { id, key, url, keyCode } }) => { //Trigger hook som låter ljud provspelas med knapptryck
+//Trigger hook som låter ljud provspelas med knapptryck
+const Triggers = ({ play, deactivateAudio, sample: { id, key, url, keyCode } }) => { //props destructing
 
     const pressKey = (event) => {
         if(keyCode === event.keyCode){

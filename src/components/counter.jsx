@@ -33,7 +33,7 @@ class Counter extends Component {
                 {this.formatCount()}
             </span>
             {/* <button onClick={() => this.stepClick(this.stepClick.product)}>stepClick</button> */}
-            <button onClick={() => this.props.onClick(this.props.tempo)}>stepClick</button>
+            <button onClick={() => this.props.onStepClick(this.props.tempo)}>stepClick</button>
 
 
             <button onClick={() => this.props.onDelete(this.props.tempo.id)} style={{color : 'red'}}>Delete</button>
