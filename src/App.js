@@ -5,7 +5,7 @@ import './App.css';
 //components
 import DrumMachine from './drumMachine';
 import Metronome from './Metronome';
-import Counter from './components/counter';
+import Tempos from './components/tempos';
 
 //Detta är min root component!
 function App() {
@@ -18,7 +18,7 @@ function App() {
         </p>
         <DrumMachine/>
         <Metronome/>
-        <Counter/>
+        <Tempos/>
       </header>
     </div>
   );
