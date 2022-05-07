@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  text-align: center;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -12,14 +13,4 @@ code {
     monospace;
 }
 
-button {
-  background-color: rgb(92, 93, 181);
-  padding: 10px;
-  border: 1px solid slategray;
-  border-radius: 2 px;
-  max-width: 100%;
-  color: aliceblue;
-  font-size: 18px;
-  transition: 500ms;
-  -webkit-tap-highlight-color: transparent;
-}
+

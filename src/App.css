@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+button {
+  background-color: rgb(92, 93, 181);
+  padding: 10px;
+  border: 1px solid slategray;
+  border-radius: 2 px;
+  max-width: 100%;
+  color: aliceblue;
+  font-size: 18px;
+  transition: 500ms;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.footer nav li a, .footer nav li button {
+  margin: 1.5rem;
+  width: 100%;
+}
