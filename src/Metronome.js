@@ -10,7 +10,7 @@ class Metronome extends React.Component {
         this.state = {
             playing : false,
             count : 0,
-            bpm : 100,
+            bpm : 60,
             beatsPerMeasure: 4
         }
 
