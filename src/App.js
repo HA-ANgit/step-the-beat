@@ -12,13 +12,13 @@ import Tempos from './components/tempos';
 //Detta är min root component!
 class App extends Component {
 
-  state = { 
+  state = {   //Lift the state from all the components! Incl Metronome & Tempobar + Drumsection
     tempos : 
     [
-        { id: 1, bpm: 60, title: 'minute'},
-        { id: 2, bpm: 85, title: 'current bpm'},
-        { id: 3, bpm: 110, title: 'accelerated bpm'},
-        { id: 4, bpm: 128, title: 'target bpm'},
+        { id: 1, bpm: 60, title: 'minute' },
+        { id: 2, bpm: 85, title: 'current bpm' },
+        { id: 3, bpm: 110, title: 'accelerated bpm' },
+        { id: 4, bpm: 128, title: 'target bpm' },
     ] 
   };
 
