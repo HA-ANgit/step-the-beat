@@ -3,11 +3,24 @@ import React, { Component } from 'react';
 
 class Counter extends Component {
 
+    componentDidUpdate(prevProps, prevState){   //Test - För debugging, Lifecyckle hook Update
+        //console.log("PrevProps - ", prevProps);
+        //console.log("PrevState - ", prevState);
+        if(prevProps.tempo.bpm !== this.props.tempo.bpm) {
+            //Detta är smart när vi vill uppdatera vårt state med ny data från servern, men inte vill skicka onödiga http requests.
+        }
+    }
+
+    componentWillUnmount() { //Test - För debugging, Lifecyckle hook Unmount
+        //I denna lifecyckle hook kan vi lägga kod som exicutas när vår DOM märker att något har tagits bort.
+        console.log("Tempos - unmount");
+    }
+
     state = { //Detta är hårdkodade värden som ej är dynamiska och som bara finns i state just nu.  
         playing : false,
         //bpm : this.props.tempo.bpm, //här plockar state värdet från "bpm-props" i vår array i tempos.
         beatsPerMeasure: 4, 
-        imageUrl: "https://picsum.photos/200"
+        imageUrl: "https://picsum.photos/200" //Denna är senare i koden bortkommenterad
     }
 
 /*     constructor() {
@@ -24,7 +37,8 @@ class Counter extends Component {
 //Insert Timer här, som kan delas med nuvarande klick / minut
 
     render() { 
-        console.log('props', this.props); //Monitor för värdet på samtliga props i console loggen
+        console.log('props', this.props); //Test - För debugging, Monitor för värdet på samtliga props i console loggen
+        console.log("Counter - rendered");
 
         return (
         <React.Fragment>
@@ -38,7 +52,7 @@ class Counter extends Component {
 
             <button onClick={() => this.props.onDelete(this.props.tempo.id)} style={{color : 'red'}}>Delete</button>
 
-            <img src={this.state.imageUrl} alt="" />
+            {/*<img src={this.state.imageUrl} alt="" />*/}
         </React.Fragment>
         );
     }
