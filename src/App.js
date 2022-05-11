@@ -8,6 +8,7 @@ import Footer from './components/footer';
 import DrumMachine from './drumMachine';
 import Metronome from './Metronome';
 import Tempos from './components/tempos';
+import CreateUserPage from './pages/CreateUserPage';
 
 //Detta är min root component!
 class App extends Component {
@@ -21,6 +22,18 @@ class App extends Component {
         { id: 4, bpm: 128, title: 'target bpm'},
     ] 
   };
+
+  constructor (props) {        //Test - Reacthook mount - Constructorn äre rätt ställe att inita props i klassen, denna kallas en gång
+    super(props);
+    console.log("App - Constructor", this.props);
+    //this.state = this.props.something;
+  }
+
+  componentDidMount() { //Test - Lifecyckle hook Mount
+    //Ajax call till ex en server
+    console.log("App - Monted");
+    //this.setState({ tempos })
+  }
 
   handleClick = (tempo) => {
       const tempos = [...this.state.tempos]; //Detta är ReactHack no1 som klonar och uppdaterar min state array
@@ -47,22 +60,26 @@ class App extends Component {
   };
 
   render(){
+    console.log("App - rendered");
+
     return (
-      <React.Fragment>
+      <div className='container'>
         <header className="App-header">
           <NavBar activeBPM={this.state.tempos.filter(c => c.bpm > 40).length}/>
         </header>
         <main className='container'>
         <h1 className="app-title">I am Drum Machine [┐∵]┘</h1>
             <p>
-              En tempo-baserad trummaskin
+              En tempo-baserad trummaskin som är {this.handleReset.resetClicked ? 'Startad' : 'Avstängd'} {/* If-loop som kikar på state, dock inte uppdateras */}
             </p>
               <DrumMachine/>
-              <Metronome/>
+              <Metronome targetBPM="Här kommer BPMprops styra vår Metronom som i slutändan blir våran sequencer"/>
               <Tempos tempos={this.state.tempos} onReset={this.handleReset} onStepClick={this.handleClick} onDelete={this.handleDelete}/>
         </main>
         <Footer/>
-      </React.Fragment>
+        <h3>Test av UserPage:</h3>
+        <CreateUserPage/>
+      </div>
     );
   }
 }

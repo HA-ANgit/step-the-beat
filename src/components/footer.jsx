@@ -2,6 +2,8 @@ import React from "react";
 
 
 const Footer = () => { //Min Placeholder för framtida kontrollyta för applikationen. Här skall trumkit etc kunna styras ifrån
+    console.log("Footer - rendered");
+    
     return (
         <div className="footer">
             <div className={"container"}>
