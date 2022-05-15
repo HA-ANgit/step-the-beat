@@ -11,7 +11,7 @@ function NavBar(props) {
             <div className='navbar'>
                 <div className='container'>
                     <div className={"logo"}>
-                            <a to="/">
+                            <a href="/" cursor="pointer">
                                 <img src={"./images/logo.png"} alt="beatstep" width="100%" height="100%"/>
                             </a>
                             <img src='./logo512.png' className="App-logo" alt="logo" />
@@ -19,9 +19,9 @@ function NavBar(props) {
                 </div>
                 <nav>
                     <ul className="primary-nav">
-                        <li><a to="/CreateUserPage" className="laptop-as mobile-as">CREATE ACCOUNT</a></li>
-                        <li><a href="/LogInPage" className={"laptop-as mobile-as"}>LOG IN</a></li>
-                        <li className={"laptop-links mobile-links"}><a href="#">ABOUT US</a></li>
+                        <li><a href="/CreateUser" className="laptop-as mobile-as">CREATE ACCOUNT</a></li>
+                        <li><a href="/LogIn" className={"laptop-as mobile-as"}>LOG IN</a></li>
+                        <li className={"laptop-links mobile-links"}><a href="/About">ABOUT US</a></li>
                     </ul>
                     <span>Active: {props.activeBPM}</span>
                 </nav>
