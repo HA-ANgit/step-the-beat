@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 function LoginForm({ Login, error }) {
     const [details, setDetails] = useState({ name: "", password: "" });

@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 class CreateUserForm extends React.Component {
     render() {
@@ -24,7 +25,7 @@ class CreateUserForm extends React.Component {
                         </form>
                     </div>
                     <div className="buttons">
-                        <a href="#">Confirm</a>
+                        <Link to="/logInPage">Confirm</Link>
                     </div>
                 </section>
 
