@@ -1,13 +1,10 @@
-import React from 'react'
-import NavBar from './navbar';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-class CreateUserPage extends React.Component {
+class CreateUserForm extends React.Component {
     render() {
         return (
             <div>
-            <header className="App-header">
-                <NavBar/>
-            </header>
                 <section className="createUser">
                     <div className="container">
                         <h2>Create new account</h2>
@@ -28,7 +25,7 @@ class CreateUserPage extends React.Component {
                         </form>
                     </div>
                     <div className="buttons">
-                        <a href="#">Confirm</a>
+                        <Link to="/logInPage">Confirm</Link>
                     </div>
                 </section>
 
@@ -39,4 +36,4 @@ class CreateUserPage extends React.Component {
     }
 }
 
-export default CreateUserPage;
+export default CreateUserForm;

@@ -1,5 +1,6 @@
 import React from "react";
 import NavBar from "../components/navbar";
+import { Link } from 'react-router-dom';
 
 const LogIn = () => {
     return (
@@ -11,18 +12,18 @@ const LogIn = () => {
             <div className="container">
 
                 <div className="text-block">
-                    <h2 className = "login-text">Logga in</h2>
+                    <h2 className = "login-text">Log in</h2>
                     <input text="Email" placeholder="Email"/>
                     <br/>
                     <input text="Password" placeholder="Password"/>
                     <br/>
-                    <div className="login-button">
-                        <a href="#" className="button-text">Log In</a>
-                    </div>
                     <div className={"checkbox-password-wrap"}>
                     <input type="checkbox" id="keep-signed" name="signed-in" value="sign-in"/>
                     <label htmlFor="keep-signed">Keep me signed in</label>
-                </div>
+                    </div>
+                    <div className="login-button">
+                        <a href="#" className="button-text">Log In</a>
+                    </div>
 
                     <h4 className="no-account">Need to create a new account?</h4>
 
