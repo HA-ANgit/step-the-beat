@@ -1,10 +1,10 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require('express')
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 const accountRoutes = require("./routes/accounts");
-const authRoutes = requre("./routes/auth");
+const authRoutes = require("./routes/auth");
 
 const serverPort = process.env.PORT || 3001;
 const AccountModel = require("./models/Account")
