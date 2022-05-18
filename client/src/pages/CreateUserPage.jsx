@@ -7,14 +7,12 @@ const CreateUserPage = () => {
 
 /*     const [uname, setUname] = useState('')
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [userId, setUserId] = useState(0) */
+    const [password, setPassword] = useState('') */
     
     const [details, setDetails] = useState({
 		uname: "",
 		email: "",
 		password: "",
-		userId: 0, //(Math.floor(Math.random() * 1000) +1),
 	});
 
     const [error, setError] = useState();
@@ -26,7 +24,6 @@ const CreateUserPage = () => {
 
     const handleSubmit = async (e) => { //Denna metod retunerar vårt objekt
 		e.preventDefault();
-        //setDetails.userId(Math.floor(Math.random() * 1000) +1)
 
         if (!details.uname) {   //Denna validerar data i state
             alert ('please add username')
@@ -40,7 +37,7 @@ const CreateUserPage = () => {
         } 
 
 		try {
-			const url = "http://localhost:3001/api/accounts";
+			const url = "http://localhost:3001/";
 			const { details: res } = await Axios.post(url, details);
 			navigate("/login");
 			console.log(res.message);
@@ -59,7 +56,6 @@ const CreateUserPage = () => {
             setDetails('')
             setEmail('')
             setPassword('')
-            setUserId('')
     }*/
 
     /* const onSubmit = async (e) => {   //Denna hanterar vår onSubmit och validerar samt kallar på vår createUser

@@ -47,7 +47,7 @@ const Admin = () => {
                 </div>
                 <div className='admin-container'>
                     {accountList.map((value, key) => {
-                        return <div key={key} className="account"><h5>{"User ID: " + value.userId + " - User Name: " + value.uname + " - Email: " + value.email}</h5>
+                        return <div key={key} className="account"><h5>{"User ID: " + value._id + " - User Name: " + value.uname + " - Email: " + value.email}</h5>
                         <input type="text" placeholder='New Username...' onChange={(e) => {setAccountName(e.target.value)}} />
                         <button onClick={() => updateAccount(value._id)} style={ {   padding: 1 }}>UPDATE USERNAME</button>
                         <button>RESET PASSWORD</button>

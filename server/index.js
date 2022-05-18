@@ -3,10 +3,10 @@ const express = require('express')
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
-const accountRoutes = require("./routes/accounts");
-const authRoutes = require("./routes/auth");
+//const accountRoutes = require("./routes/accounts");
+//const authRoutes = require("./routes/auth");
 
-const serverPort = process.env.PORT || 3001;
+const serverPort = 3001;
 const AccountModel = require("./models/Account")
 
 //middlewares
@@ -19,17 +19,17 @@ mongoose.connect("mongodb+srv://admin:admin@crud.tutfr.mongodb.net/account?retry
 });
 
 //routes
-app.use("api/accounts", accountRoutes);
-app.use("api/auth", authRoutes);
+//app.use("api/accounts", accountRoutes);
+//app.use("api/auth", authRoutes);
 
+{/*
 app.post("/insert", async (req, res) => {
 
     const uname= req.body.uname;
     const email= req.body.email;
     const password= req.body.password;
-    const userId= req.body.userId;
 
-    const account = new AccountModel({ userId: userId, uname: uname, email: email, password: password })
+    const account = new AccountModel({ uname: uname, email: email, password: password })
 
     try {
         await account.save();
@@ -39,7 +39,7 @@ app.post("/insert", async (req, res) => {
 });
 
 app.get("/read", async (req, res) => {    
-    AccountModel.find({/* $where: {uname: "SaymyName"} */}, (err, result) =>{
+    AccountModel.find({}, (err, result) =>{
         if(err) {
             res.send(err);
         }
@@ -78,7 +78,7 @@ app.delete("/delete/:id", async (req, res) => {
     await AccountModel.findByIdAndRemove(id).exec();
     res.send("deleted")
 });
-
+*/}
 app.listen(serverPort, ()=>{
     console.log('Server is running on port: ' + serverPort)
 });
