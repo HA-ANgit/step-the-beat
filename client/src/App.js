@@ -16,16 +16,17 @@ import Admin from './pages/Admin';
 
 class App extends Component {
     render() {
+        const account = localStorage.getItem("token");
         return (
             <BrowserRouter>
                 <Routes>
-                    <Route exact path="/" element={<Main/>} />
+                    {account && <Route exact path="/" element={<Main/>} />}
                     <Route exact path="/404" element={<NotFoundPage activeBPM={false}/>} />
                     <Route exact path="/LogIn" element={<LogInPage/>} />
                     <Route exact path="/CreateUser" element={<CreateUserPage/>} />
                     <Route exact path='/About' element={<About/>} />
                     <Route exact path='/Admin' element={<Admin/>} />
-                    {/* <Navigate to="/404"/> */}
+                    <Route path="/" exact element={<Navigate replace to="/login"/>}/>
                 </Routes>
             </BrowserRouter>
         );

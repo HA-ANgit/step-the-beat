@@ -8,6 +8,11 @@ function NavBar(props) {
     console.log("NavBar - rendered");
     const location = useLocation();
 
+    const handleLogout = () => {
+		localStorage.removeItem("token");
+		window.location.reload();
+	};
+
     return (
         <main>
             <div className='navbar'>
@@ -24,6 +29,7 @@ function NavBar(props) {
                         <li><Link to="/CreateUser" className="laptop-as mobile-as">CREATE ACCOUNT</Link></li>
                         <li><Link to="/LogIn" className={"laptop-as mobile-as"}>LOG IN</Link></li>
                         <li className={"laptop-links mobile-links"}><Link to="/About">ABOUT US</Link></li>
+                        <li onClick={handleLogout}>Logout</li>
                     </ul>
                     {location.pathname==='/' && //Detta gör att vi enbart visar aktiva bpm under Main-endpointen
                         <span>Active: {props.activeBPM}</span>

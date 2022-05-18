@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const {Account, validate, Account} = require("../models/Account");
+const {Account, validate} = require("../models/Account");
 const bcrypt = require("bcrypt");
 
 router.post("/", async(req, res) => {
@@ -8,8 +8,8 @@ router.post("/", async(req, res) => {
         if (error)
             return res.status(400).send({message: error.details[0].message });
 
-        const Account = await Account.findOne({email: req.body.email});
-        if (Account)
+        const account = await Account.findOne({email: req.body.email});
+        if (account)
             return res.status(409).send({message: "User with given email already exist!"})
 
         const salt = await bcrypt.genSalt(Number(10))   //BCrypt med SALT : 10
