@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import jwt from 'jsonwebtoken';
+//import jwt from 'jsonwebtoken';
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
@@ -19,15 +19,15 @@ const Dashboard = () => {
 
     useEffect(() => {   //Klassisk useEffect Hook
         const token = localStorage.getItem('token')
-        if (token) {
+        /* if (token) {
             const user = jwt.decode(token)
             if (!user) {
                 localStorage.removeItem('token')
-			history.replace('/login');
+			    history.replace('/login');
             } else {
                 populateQuote()
             }
-        }
+        } */
     }, [])
 
     return <h2>Dashboard</h2>

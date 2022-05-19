@@ -13,15 +13,23 @@ function LoginForm({ Login }) {
         try {
 			const url = "http://localhost:3001/api/login";
 			const { details: res } = await axios.post(url, details);
-			localStorage.setItem("token", res.details);
 
-            if (details.user) {
+            console.log(details)//Vi försöker hitta rätt variabel för att göra en true/false if-sats
+
+            localStorage.setItem("token", res.details);
+
+            const data = await res.json()
+
+            if (data.status === 'OK') {
                 alert("Login Sucessfull!");
-                navigate("/dashboard");			
+                //navigate("/dashboard");			
                 //window.location = "/";
             } else {
                 alert("Please check your username and password!");
             }
+
+			localStorage.setItem("token", res.details);
+
             Login(details);
 		} catch (error) {
 			if (

@@ -39,8 +39,18 @@ const CreateUserPage = () => {
 		try {
 			const url = 'http://localhost:3001/api/register';
 			const { details: res } = await Axios.post(url, details);
-			//navigate("/login");
-			console.log(res.message);
+
+            console.log(res.message);
+
+            const data = await res.json()
+
+            if (data.status === 'OK') {
+                alert("Sign up Sucessfully!");
+                navigate("/login");
+            } else {
+                alert("Please try another email!");
+            }
+
 		} catch (error) {
 			if (
 				error.response &&
