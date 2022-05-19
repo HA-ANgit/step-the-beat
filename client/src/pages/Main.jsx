@@ -69,7 +69,7 @@ class Main extends Component {
         <main className='container'>
           <h1 className="App-title">I am Drum Machine [┐∵]┘</h1>
             <p>
-              A tempo-based drum machine thats {this.handleReset.resetClicked ? 'Enabled' : 'Disabled'} {/* If-loop som kikar på state och är dynamisk */}
+              A tempo-based drum machine thats {this.handleReset.resetClicked ? 'Enabled' : 'Offline'} {/* If-loop som kikar på state och är dynamisk */}
             </p>
               <DrumMachine/>
               <Metronome targetBPM="Här kommer BPMprops styra vår Metronom som i slutändan blir våran sequencer"/>
