@@ -3,6 +3,8 @@ const express = require('express')
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
+const jwt = require('jsonwebtoken');
+
 //const accountRoutes = require("./routes/accounts");
 //const authRoutes = require("./routes/auth");
 
@@ -47,7 +49,11 @@ app.post("/api/login", async (req, res) => {
     const user = await AccountModel.Account.findOne({ email: req.body.email, password: req.body.password })
 
     if(user) {
-        res.json({Status: 'OK', User: true});
+        const token = jwt.sign({
+            name: user.uname,
+            email: user.email,
+        }, 'test')
+        res.json({Status: 'OK', User: token});
     } else {
         res.json({Status: 'error', User: false});
     }

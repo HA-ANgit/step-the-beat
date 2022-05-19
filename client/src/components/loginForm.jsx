@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm({ Login }) {
     const [details, setDetails] = useState({ email: "", password: "" });
     const [error, setError] = useState("");
+    const navigate = useNavigate();
+
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -11,7 +14,14 @@ function LoginForm({ Login }) {
 			const url = "http://localhost:3001/api/login";
 			const { details: res } = await axios.post(url, details);
 			localStorage.setItem("token", res.details);
-			window.location = "/";
+
+            if (details.user) {
+                alert("Login Sucessfull!");
+                navigate("/dashboard");			
+                //window.location = "/";
+            } else {
+                alert("Please check your username and password!");
+            }
             Login(details);
 		} catch (error) {
 			if (
