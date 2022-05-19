@@ -11,12 +11,13 @@ const AccountSchema = new mongoose.Schema({
     email: {
         type: String,
         required: false,
+        unique: true,
     },
     password: {
         type: String,
         required: true,
     }
-});
+} , {collection: 'account-data'});
 
 AccountSchema.methods.generateAuthToken = function(){   //Skapar metoden för säkerhet och authenication
     const token = jwt.sign({_id: this._id}, 'test', {expiresIn:"7d"});
