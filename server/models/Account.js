@@ -16,6 +16,9 @@ const AccountSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
+    },
+    quote: {
+        type: String
     }
 } , {collection: 'account-data'});
 
