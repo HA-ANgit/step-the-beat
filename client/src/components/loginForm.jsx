@@ -1,32 +1,39 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm({ Login }) {
-    const [details, setDetails] = useState({ uname: "", password: "" });
+    const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
     const [error, setError] = useState("");
+    const navigate = useNavigate();
+
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        try {
-			const url = "http://localhost:3001/api/auth";
-			const { details: res } = await axios.post(url, details);
-			localStorage.setItem("token", res.details);
-			window.location = "/";
-            Login(details);
-		} catch (error) {
-			if (
-				error.response &&
-				error.response.status >= 400 &&
-				error.response.status <= 500
-			) {
-				setError(error.response.details.message);
-			}
+        const response = await fetch('http://localhost:3001/api/login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				email,
+				password,
+			}),
+		})
+
+		const data = await response.json()
+
+        console.log(data.User)
+
+		if (data.User) {
+			localStorage.setItem('token', data.User)        //Vi lagrar lokal token för Auth
+			alert('Login successful')
+			navigate("/");
+		} else {
+			alert('Please check your username and password')
 		}
     }
-
-	const handleChange = ({ currentTarget: input }) => {
-		setDetails({ ...details, [input.name]: input.value });
-	};
 
     return (
         <form onSubmit={submitHandler}>
@@ -34,14 +41,18 @@ function LoginForm({ Login }) {
                 <h2>Login</h2>
                 {/* ERROR! */}
                 <div className="form-grupp">
-                    <label htmlFor="name">User Name:</label>
-                    <input type="text" name="name" id="name" onChange={e => handleChange({ ...details, uname: e.target.value })} value={details.uname} />
+                    <label htmlFor="name">Email:</label>
+                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password:</label>
-                    <input type="password" name="password" id="password" onChange={e => handleChange({ ...details, password: e.target.value })} value={details.password} />
+                    <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
                 </div>
-                <input type="submit" value="LOGIN" />
+                        <div className={"checkbox-password-wrap"}>
+                        <input type="checkbox" id="keep-signed" name="signed-in" value="sign-in"/>
+                        <label htmlFor="keep-signed">Keep me signed in</label>
+                        </div>
+                <input type="submit" value="Login" />
             </div>
             {error && <div>{error}</div>}
         </form>

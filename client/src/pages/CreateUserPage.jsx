@@ -1,65 +1,59 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import NavBar from '../components/navbar.jsx';
-import Axios from 'axios';
+import Axios from 'axios'; //TODO Fick aldrig Axios att funka
 
 const CreateUserPage = () => {
-
-/*     const [uname, setUname] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [userId, setUserId] = useState(0) */
     
-    const [details, setDetails] = useState({
-		uname: "",
-		email: "",
-		password: "",
-		userId: 0, //(Math.floor(Math.random() * 1000) +1),
-	});
+    const [uname, setUname] = useState('')
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
 
     const [error, setError] = useState();
     const navigate = useNavigate();
 
-    const handleChange = ({ currentTarget: input }) => {
-		setDetails({ ...details, [input.name]: input.value });
-	};
-
     const handleSubmit = async (e) => { //Denna metod retunerar vårt objekt
 		e.preventDefault();
-        //setDetails.userId(Math.floor(Math.random() * 1000) +1)
 
-        if (!details.uname) {   //Denna validerar data i state
+        if (!uname) {   //Denna validerar data i state
             alert ('please add username')
             return
-        } else if (!details.email) {
+        } else if (!email) {
             alert ('please add email')
             return
-        } else if (!details.password) {
+        } else if (!password) {
             alert ('please add password')
             return
         } 
 
-		try {
-			const url = "http://localhost:3001/api/accounts";
-			const { details: res } = await Axios.post(url, details);
-			navigate("/login");
-			console.log(res.message);
-		} catch (error) {
-			if (
-				error.response &&
-				error.response.status >= 400 &&
-				error.response.status <= 500
-			) {
-				setError(error.response.data.message);
-			}
-		}
+        const response = await fetch('http://localhost:3001/api/register', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				uname,
+				email,
+				password,
+			}),
+		})
+
+		const data = await response.json()
+
+        console.log(data.Status)
+
+		if (data.Status === 'OK') {
+			navigate('/login')
+		} else {
+            alert ('This Account already exists!')
+            setError(error)
+        }
 	};
 
         /*Efter "create user"-metoden, setState / reset av form
             setDetails('')
             setEmail('')
             setPassword('')
-            setUserId('')
     }*/
 
     /* const onSubmit = async (e) => {   //Denna hanterar vår onSubmit och validerar samt kallar på vår createUser
@@ -99,8 +93,8 @@ const CreateUserPage = () => {
                                     type="text"
                                     placeholder="Type in your Username"
                                     name="uname"
-                                    onChange={handleChange}
-                                    value={details.uname}
+                                    onChange={(e) => setUname(e.target.value)}
+                                    value={uname}
                                 />
                          </label>
                          <label htmlFor="email" className="form-input">
@@ -109,8 +103,8 @@ const CreateUserPage = () => {
                                 type="email"
                                 placeholder="Type in prefered@email.com"
                                 name="email"
-                                onChange={handleChange}
-                                value={details.email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                value={email}
                             />
                         </label>
                         <label htmlFor="password" className="form-input">
@@ -119,13 +113,13 @@ const CreateUserPage = () => {
                                 type="password"
                                 placeholder="Type in a Password"
                                 name="password"
-                                onChange={handleChange}
-                                value={details.password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                value={password}
                             />
                         </label>
                         <br/><br/>
 						{error && <div>{error}</div>}
-						<button type="submit">Sing Up</button>
+						<button type="submit" value="Register">Sing Up</button>
 					</form>
                 </div>
             </section>

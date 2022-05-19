@@ -12,6 +12,7 @@ import LogInPage from './pages/LogInPage';
 import CreateUserPage from "./pages/CreateUserPage";
 import About from './pages/About';
 import Admin from './pages/Admin';
+//import Dashboard from './pages/Dashboard';
 
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
                     <Route exact path="/CreateUser" element={<CreateUserPage/>} />
                     <Route exact path='/About' element={<About/>} />
                     <Route exact path='/Admin' element={<Admin/>} />
+                    {/* <Route exact path='/Dashboard' element={<Dashboard/>} /> */}
                     <Route path="/" exact element={<Navigate replace to="/login"/>}/>
                 </Routes>
             </BrowserRouter>
