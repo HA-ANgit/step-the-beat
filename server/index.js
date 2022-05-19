@@ -52,13 +52,50 @@ app.post("/api/login", async (req, res) => {
         const token = jwt.sign({
             name: user.uname,
             email: user.email,
-        }, 'test')
+        }, 'test')  //test är vår tillfälliga secret för token
         res.json({Status: 'OK', User: token});
     } else {
         res.json({Status: 'error', User: false});
     }
         
 });
+
+app.get('/api/quote', async (req, res) => {
+	const token = req.headers['x-access-token']
+
+	try {
+		const decoded = jwt.verify(token, 'test')
+		const email = decoded.email
+        console.log("AccountModel: " + AccountModel)
+
+		const user = await AccountModel.Account.findOne({ email: email })
+
+		return res.json({ status: 'ok', quote: user.quote })
+	} catch (error) {
+		console.log(error)
+		res.json({ status: 'error', error: 'invalid token' })
+	}
+})
+
+app.post('/api/quote', async (req, res) => {
+	const token = req.headers['x-access-token']
+
+	try {
+		const decoded = jwt.verify(token, 'test')
+		const email = decoded.email
+
+        console.log("AccountModel: " + AccountModel)
+		await AccountModel.Account.updateOne(
+			{ email: email },
+			{ $set: { quote: req.body.quote } }
+		)
+
+		return res.json({ status: 'ok' })
+	} catch (error) {
+		console.log(error)
+		res.json({ status: 'error', error: 'invalid token' })
+	}
+})
 
 app.get("/read", async (req, res) => {    
 
