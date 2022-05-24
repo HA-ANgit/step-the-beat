@@ -27,7 +27,7 @@ function LoginForm({ Login }) {
         console.log(data.User)
 
 		if (data.User) {
-			localStorage.setItem('token', data.User)        //Vi lagrar lokal token för Auth
+			localStorage.setItem('token', data.User)        //Vi lagrar lokal token i browsern för Auth
 			alert('Login successful')
 			navigate("/");
 		} else {
