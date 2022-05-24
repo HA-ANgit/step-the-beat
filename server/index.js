@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
 //const accountRoutes = require("./routes/accounts");
 //const authRoutes = require("./routes/auth");
 
-const serverPort = 3001;
+const serverPort = 3001;    //ToDo skapa en dynamisk serverpoint i .env -fil
 const AccountModel = require("./models/Account")
 
 //middlewares
@@ -71,7 +71,7 @@ app.get('/api/quote', async (req, res) => {
 	const token = req.headers['x-access-token']
 
 	try {
-		const decoded = jwt.verify(token, 'test')
+		const decoded = jwt.verify(token, 'test') //ToDo skapa en secret som sedan läggs i .env -fil
 		const email = decoded.email
         console.log("AccountModel: " + AccountModel)
 

@@ -7,13 +7,12 @@ class Metronome extends React.Component {
     constructor (props) {
         super (props)
 
-        this.state = {
+        this.state = {      //TODO - Lyft dessa states till Main
             playing : false,
             count : 0,
             bpm : 60,
             beatsPerMeasure: 4
         }
-
         this.metronome1 = new Audio(metronome1)
         this.metronome2 = new Audio(metronome2)
     }
