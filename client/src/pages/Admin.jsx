@@ -42,6 +42,8 @@ const Admin = () => { //TODO - Skapa en route security för ADMIN
         <div className='container'>
             <header className="App-header">
                 <h2>Admin Dashboard</h2>
+                <p>Current active accounts: </p>
+                {accountList.length}
             </header>
             <main className='container'>
             <h4>User Data: </h4>
